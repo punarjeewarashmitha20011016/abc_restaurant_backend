@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<Optional<User>> singleUser(@PathVariable ObjectId id) {
+    public ResponseEntity<Optional<User>> singleUser(@PathVariable Long id) {
         Optional<User> user = userService.singleUser(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
@@ -55,7 +55,7 @@ public class UserController {
     }
 
     @PutMapping("/user/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable ObjectId id, @RequestBody User userDetails) {
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
         User updatedUser = userService.updateUser(id, userDetails);
         if (updatedUser != null) {
             return new ResponseEntity<>(updatedUser, HttpStatus.OK);
@@ -65,7 +65,7 @@ public class UserController {
     }
 
     @PutMapping("/user/{id}/password")
-    public ResponseEntity<?> updatePassword(@PathVariable ObjectId id,
+    public ResponseEntity<?> updatePassword(@PathVariable Long id,
             @RequestBody Map<String, String> passwordDetails) {
         String newPassword = passwordDetails.get("newPassword");
         User updatedUser = userService.updatePassword(id, newPassword);
@@ -77,7 +77,7 @@ public class UserController {
     }
 
     @DeleteMapping("/user/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable ObjectId id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

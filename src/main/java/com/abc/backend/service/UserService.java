@@ -14,16 +14,16 @@ public interface UserService {
 
     public User addUser(User user);
 
-    public Optional<User> singleUser(ObjectId id);
+    public Optional<User> singleUser(Long id);
 
     public Optional<User> singleUserByEmailAndPassword(String email,String password);
 
-    public User updateUser(ObjectId id, User userDetails);
+    public User updateUser(Long id, User userDetails);
 
-    public User updatePassword(ObjectId id, String newPassword);
+    public User updatePassword(Long id, String newPassword);
 
-    public void deleteUser(ObjectId id);
-    public ObjectId getCount();
+    public void deleteUser(Long id);
+    public Long getCount();
     
     public List<Role> allRoles();
 

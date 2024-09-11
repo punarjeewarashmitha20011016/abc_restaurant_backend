@@ -10,7 +10,7 @@ import com.abc.backend.model.User;
 
 
 @Repository
-public interface UserRepository extends MongoRepository <User, ObjectId> {
+public interface UserRepository extends MongoRepository <User, Long> {
     Optional<User> findByEmailAndPassword(String email,String password);
 }
 

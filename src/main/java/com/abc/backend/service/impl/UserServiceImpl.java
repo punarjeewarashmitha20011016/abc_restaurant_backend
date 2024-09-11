@@ -31,11 +31,11 @@ public class UserServiceImpl implements UserService{
     }
 
     public User addUser(User user) {
-        // user.setUserId(sequenceIdGen.generateAndCreateObjectId(User.class.getSimpleName()));
+        user.setId(sequenceIdGen.generateSequence(User.class.getSimpleName()));
         return userRepository.save(user); 
     }
 
-    public Optional<User> singleUser(ObjectId id) {
+    public Optional<User> singleUser(Long id) {
         return userRepository.findById(id);
     }
 
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService{
         return userRepository.findByEmailAndPassword(email,password);
     }
 
-    public User updateUser(ObjectId id, User userDetails) {
+    public User updateUser(Long id, User userDetails) {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService{
         return null;
     }
 
-    public User updatePassword(ObjectId id, String newPassword) {
+    public User updatePassword(Long id, String newPassword) {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
@@ -67,11 +67,11 @@ public class UserServiceImpl implements UserService{
         return null;
     }
 
-    public void deleteUser(ObjectId id) {
+    public void deleteUser(Long id) {
             userRepository.deleteById(id);
     }
 
-    public ObjectId getCount() {
+    public Long getCount() {
         return userRepository.count();
     }
     
